@@ -1,0 +1,40 @@
+.imgCounter {
+    background-image: url('./image/blue-and-purple-abstract-background.jpg');
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: translate(-50%, -50%);
+}
+
+.counterContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    border-radius: 10px;
+    padding: 20px;
+    width: 700px;
+    height: 400px;
+    margin: 20px auto;
+}
+
+
+.counter {
+    font-size: 2em;
+    margin: 15px 20px;
+}
+
+.buttonCounter {
+    background-color: #677d94;
+    color: white;
+    border: 5px;
+    padding: 10px 20px;
+    margin: 5px;
+    font-size: 1em;
+    cursor: pointer;
+    border-radius: 5px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
