@@ -1,35 +1,35 @@
-import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../redux/store";
+import { RootState } from "../redux_rtk/storeRTK";
+import { addIngredient, clear } from "../redux_rtk/sandwichSlice";
 
 const Sandwich = () => {
   const ingredients = useSelector((state: RootState) => state.sandwich.ingredients);
   const dispatch = useDispatch();
 
   function handleAddBread() {
-    dispatch({ type: 'sandwich/addIngredient', payload: 'bread' })
+    dispatch(addIngredient('bread'))
   }
 
   function handleAddCheese() {
-    dispatch({ type: 'sandwich/addIngredient', payload: 'cheese' })
+    dispatch(addIngredient('cheese'))
   }
 
   function handleAddSalami() {
-    dispatch({ type: 'sandwich/addIngredient', payload: 'salami' })
+    dispatch(addIngredient('salami'))
   }
 
   function handleDelete() {
-    dispatch({ type: 'sandwich/clear' })
+    dispatch(clear())
   }
   
   return (
-    <div>
-      <h1>Choose your sandwich: </h1>
-      <p>Sandwich: {ingredients}</p>
-      <button onClick={handleAddBread}>Add bread</button>
-      <button onClick={handleAddCheese}>Add cheese</button>
-      <button onClick={handleAddSalami}>Add salami</button>
-      <button onClick={handleDelete}>Delete all ingredients</button>
+    <div className="sandwichContainer">
+      <h1 className="counter">Choose your sandwich: </h1>
+      <p className="counter">Sandwich: {ingredients}</p>
+      <button className='buttonCounter' onClick={handleAddBread}>Add bread</button>
+      <button className='buttonCounter' onClick={handleAddCheese}>Add cheese</button>
+      <button className='buttonCounter' onClick={handleAddSalami}>Add salami</button>
+      <button className='buttonSandwich' onClick={handleDelete}>Delete all ingredients</button>
     </div>
   );
 };

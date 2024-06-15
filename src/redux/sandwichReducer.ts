@@ -1,10 +1,10 @@
-import Action from "./sandwichAction";
+import { PayloadAction } from "@reduxjs/toolkit";
 
 const initialState = {
     ingredients: ''
 }
 
-export default function sandwichReducer(state = initialState, action: Action) {
+export default function sandwichReducer(state = initialState, action: PayloadAction<string>) {
     switch (action.type) {
         case "sandwich/addIngredient":
             return { ...state, ingredients: `${state.ingredients} ${action.payload}` };

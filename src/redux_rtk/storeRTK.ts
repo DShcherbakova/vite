@@ -1,10 +1,14 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { counterSlice } from "./counterSlice";
+import counterReducer from "./counterSlice";
+import sandwichReducer from "./sandwichSlice";
+import libraryReducer from "./librarySlice";
 
 
 export const storeRTK = configureStore({
     reducer: {
-       counter: counterSlice.reducer
+       counter: counterReducer,
+       sandwich: sandwichReducer,
+       library: libraryReducer
     }
 });
 

@@ -1,6 +1,7 @@
 import React, { FC, useState } from "react";
 import { Book as BookType } from "../redux/libraryAction";
 import { useDispatch } from "react-redux";
+import { deleteBook, editBook } from "../redux_rtk/librarySlice";
 
 const Book: FC<{ info: BookType }> = ({ info }) => {
   const [isEdit, setIsEdit] = useState(false);
@@ -11,7 +12,7 @@ const Book: FC<{ info: BookType }> = ({ info }) => {
   const dispatch = useDispatch();
 
   const handleSaveBook = () => {
-    dispatch({ type: "library/edit", payload: { isbn: info.isbn, title, author, year } })
+    dispatch( editBook({ isbn: info.isbn, title, author, year }))
     setIsEdit(false);
   }
 
@@ -19,7 +20,7 @@ const Book: FC<{ info: BookType }> = ({ info }) => {
     setIsEdit(true);
   }
   return isEdit ? (
-    <>
+    <div>
     <li>
     <label>
           Title:
@@ -33,14 +34,14 @@ const Book: FC<{ info: BookType }> = ({ info }) => {
           Year:
           <input type="text" placeholder="Year" value={year} onChange={e => setYear(+e.target.value)}/>
         </label>
-        <button onClick={handleSaveBook}>Save Book</button>
+        <button className='buttonCounter' onClick={handleSaveBook}>Save Book</button>
     </li>
-    </>
+    </div>
   ) : (
     <li>
-      {info.title} by {info.author} ({info.year})<button onClick={handleEditBook}>Edit Book</button>
-      <button
-        onClick={() => dispatch({ type: "library/delete", payload: info.isbn })}
+      {info.title} by {info.author} ({info.year})<button className='buttonCounter' onClick={handleEditBook}>Edit Book</button>
+      <button className='buttonLibrary'
+        onClick={() => dispatch(deleteBook(info.isbn))}
       >
         Delete Book
       </button>

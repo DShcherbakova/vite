@@ -1,7 +1,8 @@
 import React, { FormEvent, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../redux/store";
+import { RootState } from "../redux_rtk/storeRTK";
 import Book from "./Book";
+import { addBook } from "../redux_rtk/librarySlice";
 
 const Library = () => {
   const [title, setTitle] = useState<string>("");
@@ -13,13 +14,13 @@ const Library = () => {
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    dispatch({ type: "library/add", payload: { title, author, year } });
+    dispatch(addBook( {title, author, year} ))
     setTitle('');
     setAuthor('');
     setYear(0);
   }
   return (
-    <div>
+    <div className="bookList">
       <h2>Add Book</h2>
 
       <form onSubmit={handleSubmit}>
@@ -35,11 +36,11 @@ const Library = () => {
           Year:
           <input type="text" placeholder="Year" value={year} onChange={e => setYear(+e.target.value)}/>
         </label>
-        <button>Add Book</button>
+        <button className='buttonCounter'>Add Book</button>
       </form>
 
       <h2>Book List:</h2>
-      <ul>
+      <ul  className="bookList">
         {books.map((book) => (
           <Book key={book.isbn} info={book} />
         ))}

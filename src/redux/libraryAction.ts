@@ -9,7 +9,7 @@ export type Book = {
     title: string;
     year: number;
     author: string;
-  };
+};
   
   export type libraryAction = 
   | { type: "library/add"; payload: Omit<Book, 'isbn'> }

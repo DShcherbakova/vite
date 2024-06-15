@@ -1,21 +1,21 @@
 import { useDispatch, useSelector } from 'react-redux'
-import { RootState } from '../redux/store'
-import { counterSlice } from '../redux_rtk/counterSlice';
+import { RootState } from '../redux_rtk/storeRTK'
+import { minus, plus } from '../redux_rtk/counterSlice';
 
 const Counter = () => {
     const counter = useSelector((state: RootState) => state.counter.value);
     const dispatch = useDispatch();
 
     const handleMinus = () => {
-        dispatch(counterSlice.actions.minus(1))
+        dispatch(minus(1))
     }
 
     const handlePlus = () => {
-        dispatch({ type: 'counter/plus', payload: 1 })
+        dispatch(plus(1))
     }
 
   return (
-    <div className='imgCounter'>
+    <div>
     <div className="counterContainer">
       <div className="counter">Counter: {counter}</div>
       <button className='buttonCounter' onClick={handleMinus}>Minus (Decrement)</button>
